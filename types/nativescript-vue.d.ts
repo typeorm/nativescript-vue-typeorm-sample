@@ -1,5 +1,6 @@
 // Typings for NativeScript-Vue
 
+declare type Buffer = any
 declare module 'nativescript-vue' {
     // import vue.js typings
     import Vue from 'vue';
