@@ -27,6 +27,7 @@
     "lazy": "1.0.11",
     "nativescript-dev-typescript": "^0.7.2-2018-06-22-03",
     "nativescript-dev-webpack": "^0.14.2",
+    "node-sass": "^4.9.0",
     "typescript": "^2.9.2",
     "vue": "^2.5.16"
   }

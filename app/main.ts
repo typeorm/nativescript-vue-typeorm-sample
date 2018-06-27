@@ -2,23 +2,16 @@ import Vue from 'nativescript-vue'
 import App from './components/App'
 import 'nativescript-sqlite'
 
-declare var global: any
-type Buffer = any
+import {createConnection} from "typeorm/browser";
 
-global.window = {}
-import * as typeorm from "typeorm/browser";
-console.log(" = = = = = = = = = = ")
-console.log(" = = = = = = = = = = ")
-console.log(" = = = = = = = = = = ")
-console.log(" = = = = = = = = = = ")
-console.log(typeorm)
-
-typeorm.createConnection({
+createConnection({
     database: 'test.db',
     type: 'nativescript'
 }).then((connection) => {
     console.log("Connection Created")
 }).catch((err: Error) => console.log(err))
+
+Vue.config.silent = false
 
 new Vue({
     render: h => h(App),

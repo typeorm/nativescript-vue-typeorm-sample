@@ -1,0 +1,23 @@
+@import '~nativescript-theme-core/css/core.light.android.css';
+
+.task-item {
+
+  .task-item-task {
+    padding: 20;
+    width: 100%;
+  }
+}
+.todo-list-container {
+  padding: 20;
+
+  TextField {
+    text-align: center;
+    font-size: 18pt;
+  }
+}
+.todo-list-container > * {
+  width: 100%;
+}
+#todolist {
+  height: 100%;
+}

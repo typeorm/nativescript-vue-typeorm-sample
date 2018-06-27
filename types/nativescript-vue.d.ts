@@ -25,6 +25,6 @@ declare module 'nativescript-vue' {
         static extend<V extends Vue = Vue>(options: ComponentOptions<V>): ExtendedVue<V, {}, {}, {}, {}>
     }
 
-    export = NativeScriptVue;
+    export default NativeScriptVue;
 }
 

@@ -1,30 +1,45 @@
 import Vue from 'nativescript-vue'
-import Counter from './Counter'
+import TaskItem from './TaskItem'
+import Todo from "~/models/Todo";
 
 class App extends Vue {
-    surprice: boolean
+    surprise: boolean
+    newtask: string
+    todos: Array<Todo>
 }
 export default Vue.extend<App>({
     data() {
         return {
+            newtask: '',
             surprise: false,
+            todos: [
+                {task: 'First Task', done: false},
+                {task: 'Second Task', done: true}
+            ]
         };
     },
+    methods: {
+        addTodo() {
+            this.todos.push(new Todo(this.newtask, false))
+            console.log(this.todos)
+        }
+    },
     template: `
-    <Page class="page">
+    <Page xmlns="http://schemas.nativescript.org/tns.xsd" class="page">
       <ActionBar class="action-bar" title="NativeScript-Vue"/>
-  
-      <StackLayout>
-        <Counter />
-      
-        <Label class="p-20" textWrap=true text="This is a hello world application, tap the button if you dare"/>
-      
-        <Button class="btn btn-primary" @tap="surprise = !surprise" text="Tap me!"/>
-        <Image v-if="surprise" class="m-20" src="~/images/NativeScript-Vue.png"/>
+      <StackLayout class="todo-list-container">
+        <TextField v-model="newtask" hint="New Task" id="newtask"></TextField>
+        <Button @tap="addTodo" text="ADD TASK"></Button>
+        <ListView id="todolist" for="todo in todos">
+            <v-template>
+                <TaskItem :todo="todo"></TaskItem>
+            </v-template>
+        </ListView>
       </StackLayout>
+      
     </Page>
   `,
     components: {
-        Counter,
+        TaskItem
     },
 })
