@@ -66,23 +66,9 @@ typings/
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
 # User-specific stuff
-.idea/**/workspace.xml
-.idea/**/tasks.xml
-.idea/**/dictionaries
-.idea/**/shelf
-
-# Sensitive or high-churn files
-.idea/**/dataSources/
-.idea/**/dataSources.ids
-.idea/**/dataSources.local.xml
-.idea/**/sqlDataSources.xml
-.idea/**/dynamic.xml
-.idea/**/uiDesigner.xml
-.idea/**/dbnavigator.xml
-
-# Gradle
-.idea/**/gradle.xml
-.idea/**/libraries
+.idea/
+!/.idea/jsLibraryMappings.xml
+!/.idea/codeStyles/
 
 # CMake
 cmake-build-debug/
@@ -115,11 +101,8 @@ fabric.properties
 # Editor-based Rest Client
 .idea/httpRequests
 ### VisualStudioCode template
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+.vscode/
+
 
 # Nativescript
 /platforms
