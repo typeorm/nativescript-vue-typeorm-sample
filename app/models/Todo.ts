@@ -1,8 +1,8 @@
-import {Entity, PrimaryGeneratedColumn, Column} from "typeorm/browser";
+import {BaseEntity, Entity, PrimaryGeneratedColumn, Column} from "typeorm/browser";
 
 @Entity()
-export default class Todo {
-    @PrimaryGeneratedColumn('increment')
+export default class Todo extends BaseEntity {
+    @PrimaryGeneratedColumn()
     id?: number;
 
     @Column()
@@ -10,9 +10,11 @@ export default class Todo {
 
     @Column()
     done: boolean;
-    constructor(task, done) {
-        this.task = task
-        this.done = done
+
+    constructor(task: string, done: boolean) {
+        super();
+        this.task = task;
+        this.done = done;
     }
 
 }

@@ -1,11 +1,12 @@
 import Vue from 'nativescript-vue'
 import TaskItem from './TaskItem'
-import Todo from "~/models/Todo";
+import Todo from "../models/Todo";
 
 class App extends Vue {
     surprise: boolean
     newtask: string
     todos: Array<Todo>
+    refreshTodos: () => void
 }
 export default Vue.extend<App>({
     data() {
@@ -18,10 +19,21 @@ export default Vue.extend<App>({
             ]
         };
     },
+    mounted() {
+        this.refreshTodos()
+    },
     methods: {
+        refreshTodos() {
+            Todo.find().then((todos) => {
+                console.log(todos)
+                this.todos = todos
+            }).catch(console.error)
+        },
+
         addTodo() {
-            this.todos.push(new Todo(this.newtask, false))
-            console.log(this.todos)
+            const todo = new Todo(this.newtask, false);
+            todo.save().then(() => this.refreshTodos())
+                .catch(console.error)
         }
     },
     template: `
@@ -32,7 +44,7 @@ export default Vue.extend<App>({
         <Button @tap="addTodo" text="ADD TASK"></Button>
         <ListView id="todolist" for="todo in todos">
             <v-template>
-                <TaskItem :todo="todo"></TaskItem>
+                <TaskItem :todo="todo" @requestRefresh="refreshTodos"></TaskItem>
             </v-template>
         </ListView>
       </StackLayout>

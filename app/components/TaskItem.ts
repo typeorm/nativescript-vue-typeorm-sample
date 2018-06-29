@@ -8,13 +8,16 @@ class TaskItem extends Vue {
 export default Vue.extend<TaskItem>({
     props: ['todo'],
     methods: {
-        created() {
-            console.log(this.todo)
+        async removeSelf() {
+            if (this.todo.id) {
+                await Todo.delete({id: this.todo.id})
+                this.$emit('requestRefresh')
+            }
         }
     },
     template: `
 <StackLayout class="task-item" orientation="horizontal" xmlns="http://schemas.nativescript.org/tns.xsd">
-    <Label class="task-item-task" :text="todo.task"></Label>
+    <Label @tap="removeSelf" class="task-item-task" :text="todo.task"></Label>
 </StackLayout>
     `
 })
